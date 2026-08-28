@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" fill="none">
+  <!-- Interlinked Rings (Green & Blue) -->
+  <g transform="translate(10, 10)">
+    <!-- Green Ring -->
+    <path d="M28 32 A 18 18 0 1 1 42 12" stroke="#68bb36" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <!-- Blue Ring (Interlocked) -->
+    <path d="M38 12 A 18 18 0 1 1 24 32" stroke="#1c62b9" stroke-width="7" stroke-linecap="round" fill="none"/>
+  </g>
+  <!-- Brand Text in Bright Crisp White -->
+  <text x="72" y="38" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="3" fill="#ffffff">CLASSIC</text>
+  <text x="74" y="56" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" letter-spacing="1" fill="#e0e0e0">Classic Shipping Co.</text>
+</svg>

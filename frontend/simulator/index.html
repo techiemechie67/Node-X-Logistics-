@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRIANGULATION SIMULATOR — NODE-X-LOGISTICS | Working-Capital Decision Engine</title>
+  <meta name="description" content="Supply Chain Triangulation Simulation Engine. Multi-dimensional trade-off plotting: Quality vs Time vs Cost. CSI ORIGINS 2026 #6.">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Saira+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Full-Page Persistent Background + Dark Scrim Layer (Consistent Across All Pages) -->
+  <div id="siteBg" aria-hidden="true"><div id="siteBgScrim"></div></div>
+
+  <!-- Top Navigation (56px Minimalist Black Bar) -->
+  <nav class="top-nav">
+    <div class="top-nav-inner">
+      <div class="nav-left-cluster">
+        <a class="nav-link" href="/" style="text-decoration: none;">OVERVIEW</a>
+        <a class="nav-link" href="/problem" style="text-decoration: none;">THE PROBLEM</a>
+        <a class="nav-link" href="/about" style="text-decoration: none;">ABOUT US</a>
+      </div>
+
+      <div class="wordmark-center" onclick="window.location.href='/'">
+        <span class="wordmark">NODE-X-LOGISTICS</span>
+      </div>
+
+      <div class="nav-right-cluster">
+        <span class="status-badge-mono">CSI ORIGINS 2026 #6</span>
+        <a href="/problem" class="button-secondary button-secondary-small" style="text-decoration: none;">
+          PROBLEM STATEMENT
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="app-main" style="padding-top: 56px;">
+
+    <!-- INTERACTIVE SIMULATOR STUDIO -->
+    <section id="simView" class="view-section active">
+      <div class="simulator-section">
+        
+        <!-- Toolbar Band (Minimalist Luxury Glass) -->
+        <div class="sim-toolbar-band">
+          <div class="toolbar-cluster">
+            <span class="caption-uppercase">VOICE UNDERWRITER:</span>
+            <label class="switch" for="voiceToggle" aria-label="Toggle Voice Underwriter">
+              <input type="checkbox" id="voiceToggle" checked onchange="onVoiceToggleChange(this)">
+              <div class="slider">
+                <div class="circle">
+                  <svg class="cross" viewBox="0 0 365.696 365.696" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M243.188 182.86 356.32 69.726c12.5-12.5 12.5-32.766 0-45.247L341.238 9.398c-12.504-12.503-32.77-12.503-45.25 0L182.86 122.528 69.727 9.374c-12.5-12.5-32.77-12.5-45.246 0L9.398 24.46c-12.5 12.5-12.5 32.77 0 45.247l113.132 113.153L9.398 295.99c-12.5 12.5-12.5 32.77 0 45.25l15.082 15.08c12.5 12.5 32.77 12.5 45.25 0l113.13-113.133 113.13 113.13c12.5 12.5 32.77 12.5 45.25 0l15.08-15.08c12.5-12.5 12.5-32.77 0-45.25l-113.13-113.133z"></path>
+                  </svg>
+                  <svg class="checkmark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                  </svg>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div class="toolbar-cluster">
+            <button class="button-secondary button-secondary-small" onclick="resetNetworkAndLedger()">
+              RESET TO BASELINE
+            </button>
+          </div>
+        </div>
+
+        <!-- Minimalist Studio Segmented Navigation Bar -->
+        <div class="studio-tab-bar">
+          <button class="studio-tab-btn active" id="studioTab_topology" onclick="switchStudioTab('topology')">
+            1. TRIANGULATION GRAPH (QUALITY // TIME // COST)
+          </button>
+          <button class="studio-tab-btn" id="studioTab_crises" onclick="switchStudioTab('crises')">
+            2. DECADE CRISIS LAB (HORMUZ, COVID, WARS)
+          </button>
+          <button class="studio-tab-btn" id="studioTab_ai-advisor" onclick="switchStudioTab('ai-advisor')">
+            3. AI ROUTE & WORKING CAPITAL ADVISOR
+          </button>
+        </div>
+
+        <!-- ================================================================
+             PANE 1: SUPPLY CHAIN TRIANGULATION GRAPH STUDIO
+             ================================================================ -->
+        <div class="studio-pane active" id="studioPane_topology">
+          
+          <!-- MULTIMODAL LOGISTICS PATHWAY SELECTOR & TRADE-OFF CONTROLLER -->
+          <div class="pathway-optimizer-deck">
+            <div class="pathway-deck-header">
+              <div class="pathway-deck-title-group">
+                <span class="caption-uppercase" style="letter-spacing: 2px;">CSI ORIGINS 2026 // MULTIMODAL ROUTING INTELLIGENCE</span>
+                <h3>SUPPLY CHAIN TRIANGULATION GRAPH & PATHWAY OPTIMIZER</h3>
+                <p class="body-sm" style="color: var(--body); margin-top: 4px;">
+                  Switch and edit shipping pathways from factory origin to consumer. The Triangulation Graph dynamically evaluates and plots the 3 fundamental axes: Quality Preservation (%), Lead Time Velocity (Days), and Landed Working Capital Cost ($).
+                </p>
+              </div>
+              <span class="status-badge-mono" style="color: #10b981; border-color: rgba(16, 185, 129, 0.4);">
+                TRIANGULATION ENGINE: ACTIVE
+              </span>
+            </div>
+
+            <!-- 4 Multi-Modal Pathway Selector Cards Grid -->
+            <div class="pathway-cards-grid" id="pathwayCardsGrid">
+              <!-- Rendered dynamically by pathway-optimizer.js -->
+            </div>
+
+            <!-- Interactive Pathway Customizer & Pareto-Optimal Advice -->
+            <div class="pathway-details-grid" style="margin-bottom: 20px;">
+              <div class="pathway-customizer-pane">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="caption-uppercase" style="color: #ffffff;">PATHWAY FINE-TUNING // SLIDERS</span>
+                  <span class="status-badge-mono">DYNAMIC PARAMETERS</span>
+                </div>
+
+                <div class="stack-xs">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span class="caption-uppercase">TRANSIT DURATION:</span>
+                    <span class="mono-text" id="pathwayDaysVal" style="color: #38bdf8;">14 DAYS</span>
+                  </div>
+                  <input type="range" id="pathwayDaysSlider" class="bugatti-slider" min="2" max="45" value="14" step="1" oninput="window.PathwayOptimizer.onCustomSliderChange()">
+                </div>
+
+                <div class="stack-xs">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span class="caption-uppercase">DIRECT FREIGHT BUDGET:</span>
+                    <span class="mono-text" id="pathwayFreightVal" style="color: #ffffff;">$34,500</span>
+                  </div>
+                  <input type="range" id="pathwayFreightSlider" class="bugatti-slider" min="10000" max="100000" value="34500" step="500" oninput="window.PathwayOptimizer.onCustomSliderChange()">
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-top: 4px;">
+                  <button class="button-primary" id="applyPathwayBtn" style="width: 100%;" onclick="window.PathwayOptimizer.applyPathway()">
+                    APPLY TO TRIANGULATION GRAPH
+                  </button>
+                </div>
+              </div>
+
+              <div class="pathway-verdict-pane">
+                <div>
+                  <div class="verdict-header-row">
+                    <span class="caption-uppercase" style="color: var(--muted-soft);">OPTIMAL TRIANGULATION ADVISOR</span>
+                    <span class="caption-uppercase" style="font-size: 10px; color: #10b981;">PARETO-OPTIMAL EQUILIBRIUM</span>
+                  </div>
+                  <h4 class="title-sm" id="verdictTitle" style="color: #ffffff; margin-bottom: 6px;">
+                    <span style="color: #10b981;">PARETO-OPTIMAL:</span> TRANS-EURASIAN RAIL INTERMODAL
+                  </h4>
+                  <p class="verdict-explanation-text" id="verdictExplanation" style="font-size: 12.5px; margin-bottom: 10px;">
+                    Loading trade-off analysis...
+                  </p>
+                </div>
+
+                <table class="verdict-tradeoff-table">
+                  <thead>
+                    <tr>
+                      <th>DIRECT FREIGHT</th>
+                      <th>CARRYING COST</th>
+                      <th>TOTAL WORKING CAPITAL</th>
+                      <th>CCC IMPACT</th>
+                      <th>DYNAMIC RATE</th>
+                      <th>CREDIT LIMIT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td id="vFreightVal">$34,500</td>
+                      <td id="vCarryingVal" style="color: var(--warning);">$7,460</td>
+                      <td id="vTotalVal" style="color: #ffffff; font-weight: 600;">$41,960</td>
+                      <td id="vCccVal">+16 DAYS</td>
+                      <td id="vRateVal" style="color: var(--link);">7.20%</td>
+                      <td id="vLtvVal" style="color: #10b981;">$160,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- TRIANGULATION GRAPH VISUALIZER: Topological Pipeline + Dynamic Radar Polygon + Presets + Inspector -->
+            <div style="display: grid; grid-template-columns: 210px 1fr 300px; gap: 16px; align-items: stretch; background: rgba(6, 6, 8, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-md); padding: 18px; margin-bottom: 20px;">
+              
+              <!-- Left Column: Minimal Disruption Presets -->
+              <div style="background: rgba(10, 10, 14, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+                  <div class="preset-chip-list">
+                    <button class="preset-chip" onclick="applyPresetShock('port_blockade', 14)">Port Blockade (+14 days)</button>
+                    <button class="preset-chip" onclick="applyPresetShock('customs_delay', 9)">Customs Bottleneck (+9 days)</button>
+                    <button class="preset-chip" onclick="applyPresetShock('component_shortage', 21)">Material Shortage (+21 days)</button>
+                    <button class="preset-chip" onclick="applyPresetShock('carrier_strike', 7)">Carrier Strike (+7 days)</button>
+                    <button class="preset-chip" onclick="applyPresetShock('fuel_shock', 30)">Energy Surcharge (+30% cost)</button>
+                  </div>
+                <div style="font-size: 9.5px; color: var(--muted); font-family: var(--font-mono, monospace); margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 8px;">
+                  Select a preset to inject shock propagation.
+                </div>
+              </div>
+
+              <!-- Center: Topological Section DAG Pipeline with Interactive DotGrid Canvas -->
+              <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <span class="caption-uppercase" style="color: #ffffff;">SUPPLY CHAIN SECTION TOPOLOGY</span>
+                  <span class="caption-uppercase" style="font-size: 10px; color: var(--muted);">Click or hover node to inspect</span>
+                </div>
+
+                <div class="graph-viewport-wrap" id="graphViewport" style="min-height: 280px; height: 100%; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; position: relative; overflow: hidden;">
+                  <!-- Interactive Dotted Background specifically inside Supply Flow Sector -->
+                  <div id="supplyFlowDotBg" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: auto;"></div>
+                  <!-- SVG Supply Chain Flow Pipeline Layer -->
+                  <svg id="graphSvg" style="position: relative; z-index: 1; width: 100%; height: 280px; display: block;"></svg>
+                </div>
+              </div>
+
+              <!-- Right Column: Minimal Monochrome Node Inspector Tray -->
+              <div class="node-inspector-tray" id="nodeInspectorTray" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #333333; padding-bottom: 6px;">
+                    <span class="caption-uppercase" style="color: #888888; font-size: 9px; letter-spacing: 1.5px;">NODE INSPECTOR</span>
+                    <span class="caption-uppercase" id="inspectorModeLabel" style="color: #ffffff; font-size: 8.5px;">ACTIVE ASSET</span>
+                  </div>
+
+                  <div id="inspectorEmpty" class="hidden" style="color: #888888; font-size: 11px; font-family: var(--font-mono, monospace); padding: 20px 0; text-align: center;">
+                    Click or hover any node in the topology to inspect terms and leverage.
+                  </div>
+
+                  <div id="inspectorContent">
+                    <!-- Populated dynamically by onNodeSelected(node) in app.js -->
+                  </div>
+                </div>
+
+                <div style="margin-top: 10px; border-top: 1px solid #333333; padding-top: 8px; font-size: 9.5px; font-family: var(--font-mono, monospace); color: #888888;">
+                  Auto-Underwriter: #0a0a0a Monochromatic
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Triangulation Trade-off Radar Bar -->
+            <div style="display: grid; grid-template-columns: 280px 1fr; gap: 20px; align-items: center; background: rgba(12, 12, 16, 0.95); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 4px; padding: 18px;">
+              <div style="display: flex; justify-content: center; align-items: center;">
+                <svg id="radarSvg" width="240" height="240" viewBox="0 0 260 260" style="max-width: 100%;"></svg>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div>
+                  <span class="caption-uppercase" style="color: #ffffff; display: block; margin-bottom: 2px;">TRIANGULATION RADAR</span>
+                  <span class="caption-uppercase" style="font-size: 9.5px; color: var(--muted-soft);">PARETO-TRADE-OFF FRONTIER</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; border-top: 1px solid var(--hairline); padding-top: 10px; font-size: 12px; font-family: var(--font-mono, monospace);">
+                  <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: #10b981; font-size: 9px; display: block; margin-bottom: 4px;">QUALITY RETENTION</span>
+                    <strong id="radarQualityLabel" style="color: #ffffff; font-size: 15px;">96.5%</strong>
+                  </div>
+                  <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: #38bdf8; font-size: 9px; display: block; margin-bottom: 4px;">TRANSIT VELOCITY</span>
+                    <strong id="radarTimeLabel" style="color: #ffffff; font-size: 15px;">78% (14d)</strong>
+                  </div>
+                  <div style="background: rgba(0,0,0,0.4); padding: 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.06);">
+                    <span style="color: #f59e0b; font-size: 9px; display: block; margin-bottom: 4px;">COST EFFICIENCY</span>
+                    <strong id="radarCostLabel" style="color: #ffffff; font-size: 15px;">82% ($42.0k)</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================================================================
+             PANE 2: DECADE CRISIS LAB & HISTORIC MACRO-DISRUPTIONS (2015-2025)
+             ================================================================ -->
+        <div class="studio-pane" id="studioPane_crises" style="display: none;">
+          <div class="pathway-optimizer-deck" style="margin-bottom: 20px;">
+            <div class="pathway-deck-header">
+              <div class="pathway-deck-title-group">
+                <span class="caption-uppercase" style="letter-spacing: 2px;">HISTORIC MACRO-DISRUPTIONS // 2015-2025</span>
+                <h3>DECADE CRISIS LAB & TRIANGULATION DISTORTION SIMULATOR</h3>
+                <p class="body-sm" style="color: var(--body); margin-top: 4px;">
+                  Explore how the last decade's 5 largest global supply chain crises (Red Sea/Hormuz, COVID-19, War Airspace bans, Panama Drought, Energy Spikes) distorted Quality, Time, and Cost — and discover the optimal adaptive rerouting strategies.
+                </p>
+              </div>
+              <span class="status-badge-mono" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">
+                5 HISTORIC CRISES ARCHIVED
+              </span>
+            </div>
+
+            <!-- Dynamic Crisis Cards Grid -->
+            <div class="crisis-cards-grid" id="crisisCardsGrid">
+              <!-- Rendered dynamically by crisis-scenarios.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ================================================================
+             PANE 3: OPEN-SOURCE AI ROUTE & WORKING CAPITAL ADVISOR
+             ================================================================ -->
+        <div class="studio-pane" id="studioPane_ai-advisor" style="display: none;">
+          <div class="ai-advisor-container">
+            <div class="pathway-deck-header" style="margin-bottom: 12px; padding-bottom: 12px;">
+              <div class="pathway-deck-title-group">
+                <span class="caption-uppercase" style="letter-spacing: 2px;">QUANTITATIVE UNDERWRITING INTELLIGENCE</span>
+                <h3>AI LOGISTICS ROUTE & WORKING CAPITAL ADVISOR</h3>
+                <p class="body-sm" style="color: var(--body); margin-top: 4px;">
+                  Ask the AI underwriter any natural language routing, risk, or working-capital question. Instantly analyzes multi-modal lead times, quality preservation indices, and dynamic capital carrying costs, rendering the Triangulation Graph directly in-situ.
+                </p>
+              </div>
+              <span class="status-badge-mono" style="color: #10b981; border-color: rgba(16, 185, 129, 0.4);">
+                AI ROUTING ENGINE: READY
+              </span>
+            </div>
+
+            <!-- DeepSeek Agent API Key Config Bar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(14, 14, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 8px 14px; margin-bottom: 12px; font-family: var(--font-mono, monospace); font-size: 11px; flex-wrap: wrap; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px; flex: 1; min-width: 280px;">
+                <span style="color: #888888; font-size: 9px; letter-spacing: 1px;">DEEPSEEK API KEY:</span>
+                <input type="password" id="deepseekApiKeyInput" placeholder="sk-... (Auto-loaded from backend/.env or enter here)" style="background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.18); color: #ffffff; padding: 4px 8px; border-radius: 3px; font-size: 11px; width: 280px; font-family: var(--font-mono, monospace);" onchange="if(window.AiRouteAdvisor && typeof window.AiRouteAdvisor.saveApiKey==='function') window.AiRouteAdvisor.saveApiKey(this.value)">
+                <span id="apiKeyStatusBadge" class="status-badge-mono" style="font-size: 8.5px; color: #10b981; border-color: rgba(16, 185, 129, 0.4);">AUTONOMOUS AGENT ACTIVE</span>
+              </div>
+              <div style="color: #888888; font-size: 9.5px;">
+                Model: <strong style="color: #38bdf8;">deepseek-chat (JSON-Mode)</strong>
+              </div>
+            </div>
+
+            <!-- AI Query Box -->
+            <div class="ai-query-box">
+              <input type="text" id="aiQueryInput" class="ai-input-field" placeholder="Query AI underwriter: e.g. What is the optimal route for semiconductors during the Red Sea crisis?" onkeydown="if(event.key==='Enter') window.AiRouteAdvisor.ask()">
+              <button class="button-primary" style="padding: 12px 24px; white-space: nowrap;" onclick="window.AiRouteAdvisor.ask()">
+                ANALYZE WITH AI
+              </button>
+            </div>
+
+            <!-- Quick Suggestion Pills -->
+            <div class="ai-suggestion-pills">
+              <span class="caption-uppercase" style="font-size: 10px; color: var(--muted); align-self: center; margin-right: 4px;">PRESETS:</span>
+              <button class="ai-pill-btn" onclick="window.AiRouteAdvisor.ask('Red Sea and Strait of Hormuz conflict optimal reroute')">
+                Red Sea / Hormuz Blockade
+              </button>
+              <button class="ai-pill-btn" onclick="window.AiRouteAdvisor.ask('COVID-19 35-day port congestion and dwell time recovery')">
+                COVID-19 Port Gridlock
+              </button>
+              <button class="ai-pill-btn" onclick="window.AiRouteAdvisor.ask('Eurasian airspace closure and Black Sea blockade')">
+                War Airspace Detour
+              </button>
+              <button class="ai-pill-btn" onclick="window.AiRouteAdvisor.ask('Perishable cold-chain pharmaceutical freight optimization')">
+                Cold-Chain Pharma Protection
+              </button>
+              <button class="ai-pill-btn" onclick="window.AiRouteAdvisor.ask('High-value semiconductor working capital carrying cost')">
+                High-Value Micro-Electronics
+              </button>
+              <button class="ai-pill-btn" onclick="window.AiRouteAdvisor.ask('Panama Canal drought slot restriction land-bridge')">
+                Panama Canal Drought
+              </button>
+            </div>
+
+            <!-- AI Response Output Space -->
+            <div id="aiResponseArea">
+              <div class="ai-thinking-card" style="border: 1px dashed rgba(255, 255, 255, 0.12);">
+                <div>
+                  <span class="caption-uppercase" style="color: #ffffff;">AI LOGISTICS SPACE READY FOR QUERY</span>
+                  <p class="body-sm" style="color: var(--muted); margin-top: 2px;">
+                    Enter a query above or click any preset to compute the Pareto-optimal route and Triangulation radar.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- NODE DETAILS POPUP MODAL (Brief Quantitative Breakdown + Close Button) -->
+  <div id="nodeDetailsModal" class="modal-backdrop hidden" onclick="if(event.target===this) window.closeNodeDetailsModal()">
+    <div class="modal-bugatti-card" style="max-width: 560px; border-color: rgba(255, 255, 255, 0.22); background: rgba(14, 14, 18, 0.96);">
+      
+      <!-- Modal Header -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 14px;">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="status-badge-mono" id="modalSectionBadge">SECTION 01 // ORIGIN</span>
+            <span class="status-badge-mono" id="modalStateBadge" style="color: #10b981; border-color: rgba(16, 185, 129, 0.4);">NOMINAL</span>
+          </div>
+          <h3 class="title-md" id="modalNodeName" style="color: #ffffff; margin: 0;">ORGANIC COTTON FARMS</h3>
+        </div>
+        <button class="modal-close-btn" onclick="window.closeNodeDetailsModal()" aria-label="Close modal">
+          ✕ CLOSE
+        </button>
+      </div>
+
+      <!-- Modal Content: 2-Column Metrics Breakdown -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0;">
+        
+        <!-- Physical Telemetry Card -->
+        <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 14px;">
+          <span class="caption-uppercase" style="color: var(--muted-soft); display: block; margin-bottom: 8px; font-size: 9px;">PHYSICAL TELEMETRY</span>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">LEAD TIME:</span>
+              <strong id="modalLeadTime" style="color: #38bdf8;">8.0 DAYS</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">TRANSIT DELAY:</span>
+              <strong id="modalDelay" style="color: #ffffff;">0 DAYS</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">QUALITY INDEX:</span>
+              <strong id="modalQuality" style="color: #10b981;">98.0%</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">BOTTLENECK:</span>
+              <strong id="modalBottleneck" style="color: #10b981;">CLEAR (NO)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial Underwriting Card -->
+        <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; padding: 14px;">
+          <span class="caption-uppercase" style="color: var(--muted-soft); display: block; margin-bottom: 8px; font-size: 9px;">WORKING CAPITAL UNDERWRITING</span>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">CAPITAL NEED:</span>
+              <strong id="modalCost" style="color: #ffffff;">$140,000</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">DYNAMIC RATE:</span>
+              <strong id="modalRate" style="color: #38bdf8;">6.80% APR</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">MAX SAFE LTV:</span>
+              <strong id="modalLtv" style="color: #10b981;">85% ($119,000)</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--muted);">FACILITY:</span>
+              <strong id="modalInstrument" style="color: #ffffff; font-size: 10px;">PO FINANCING</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer Actions -->
+      <div style="display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px; margin-top: 4px;">
+        <button class="button-secondary button-secondary-small" onclick="window.closeNodeDetailsModal()">
+          CLOSE
+        </button>
+        <button class="button-primary button-primary-small" id="modalActionBtn" onclick="window.financeCurrentModalNode()">
+          FINANCE FACILITY
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bugatti Footer (Austere Black with Centered Wordmark) -->
+  <footer class="bugatti-footer">
+    <div class="footer-inner">
+      <div class="footer-columns">
+        <div>
+          <span class="caption-uppercase" style="color: #ffffff; display: block; margin-bottom: 12px;">PROBLEM STATEMENT</span>
+          <p class="body-sm">CSI ORIGINS 2026 #6 — Building a Competitive Capital Market for Supply-Chain Working Capital.</p>
+        </div>
+        <div>
+          <span class="caption-uppercase" style="color: #ffffff; display: block; margin-bottom: 12px;">ARCHITECTURE</span>
+          <p class="body-sm">Supply Chain Triangulation Graph (Quality // Time // Cost) + Dynamic Working Capital Intelligence Engine.</p>
+        </div>
+        <div>
+          <span class="caption-uppercase" style="color: #ffffff; display: block; margin-bottom: 12px;">TECH STACK</span>
+          <p class="body-sm">Python FastAPI, NetworkX, D3/SVG Triangulation Radar, Web Speech Voice Synthesis, Vanta.js 3D WebGL Canvas.</p>
+        </div>
+        <div>
+          <span class="caption-uppercase" style="color: #ffffff; display: block; margin-bottom: 12px;">TEAM & SOURCE</span>
+          <p class="body-sm">TECHIEMECHIE (VIT Chennai Freshers). <a href="https://www.linkedin.com/company/143088470" target="_blank" rel="noopener noreferrer" class="text-link" style="font-size: 11px;">Connect on LinkedIn</a></p>
+        </div>
+      </div>
+
+      <div class="footer-legal-row">
+        <span class="caption-uppercase" style="font-size: 10px;">COPYRIGHT 2026 NODE-X-LOGISTICS. ALL RIGHTS RESERVED.</span>
+        <span class="wordmark" style="font-size: 12px; letter-spacing: 5px;">NODE-X-LOGISTICS</span>
+        <span class="caption-uppercase" style="font-size: 10px;">CSI ORIGINS 2026 // REQUIREMENT 1-8 COMPLIANT</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js + Vanta 3D NET Background Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="/js/vanta.net.min.js"></script>
+  <script src="/js/background.js"></script>
+
+  <!-- Node-X Simulation & Triangulation Core Scripts -->
+  <script src="/js/mock-engine.js"></script>
+  <script src="/js/graph.js"></script>
+  <script src="/js/pathway-optimizer.js"></script>
+  <script src="/js/crisis-scenarios.js"></script>
+  <script src="/js/ai-route-advisor.js"></script>
+  <script src="/js/app.js"></script>
+
+  <!-- Auto-Initialize Simulator -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof initApp === "function") {
+        initApp();
+      }
+    });
+  </script>
+</body>
+</html>

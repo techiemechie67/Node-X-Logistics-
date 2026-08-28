@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50">
+  <g transform="translate(10, 6)">
+    <circle cx="18" cy="18" r="16" stroke="#f6c200" stroke-width="2.5" fill="none"/>
+    <path d="M18 6v24M10 18h16M13 10l10 16M23 10L13 26" stroke="#f6c200" stroke-width="1.5"/>
+  </g>
+  <text x="56" y="34" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="900" letter-spacing="4" fill="#ffffff">MSC</text>
+</svg>

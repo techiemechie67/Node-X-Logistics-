@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Classic Shipping Iconic Interlinked Rings (Green & Blue) -->
+  <g transform="translate(14, 14) scale(1.15)">
+    <!-- Green Ring -->
+    <path d="M22 34 A 18 18 0 1 1 36 10" stroke="#68bb36" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <!-- Blue Ring (Interlocked) -->
+    <path d="M40 10 A 18 18 0 1 1 26 34" stroke="#1c62b9" stroke-width="8" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="#ffffff">
+  <g transform="translate(10, 8)">
+    <path d="M 18,0 L 22,11 L 34,7 L 29,18 L 38,26 L 27,30 L 29,42 L 18,35 L 7,42 L 9,30 L -2,26 L 7,18 L 2,7 L 14,11 Z" fill="#42b0d5"/>
+  </g>
+  <text x="65" y="34" font-family="'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="900" letter-spacing="3" fill="#ffffff">MAERSK</text>
+</svg>
